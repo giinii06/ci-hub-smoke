@@ -1,9 +1,19 @@
 workflow:
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "api" || $CI_PIPELINE_SOURCE == "web"'
+    - if: '$CI_PIPELINE_SOURCE == "api" || $CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "pipeline"'
 
 github_actions_request:
   stage: test
   script: ['echo GitHub Actions handles this pipeline request']
-  when: manual
-  allow_failure: true
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "pipeline" || $CI_PROJECT_PATH == "blond11qq/ci-hub-smoke"'
+      when: manual
+      allow_failure: true
+
+dispatch_github_actions:
+  stage: test
+  rules:
+    - if: '($CI_PIPELINE_SOURCE == "api" || $CI_PIPELINE_SOURCE == "web") && $CI_PROJECT_PATH != "blond11qq/ci-hub-smoke"'
+  trigger:
+    project: blond11qq/ci-hub-smoke
+    branch: main
