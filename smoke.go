@@ -1,3 +1,3 @@
 package smoke
 
-func Ready() bool { return true }
+func Ready() bool { return false }
