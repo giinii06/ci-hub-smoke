@@ -1,0 +1,17 @@
+name: Bun and Rust smoke
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  bun:
+    uses: giinii06/ci-hub/.github/workflows/ci.yml@v1
+    with:
+      stack: bun
+      directory: bun-fixture
+  rust:
+    uses: giinii06/ci-hub/.github/workflows/ci.yml@v1
+    with:
+      stack: rust
+      directory: rust-fixture

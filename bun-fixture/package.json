@@ -1,0 +1,11 @@
+{
+  "name": "ci-hub-bun-smoke",
+  "private": true,
+  "scripts": {
+    "test": "bun test",
+    "build": "bun build index.ts --outdir dist"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}
