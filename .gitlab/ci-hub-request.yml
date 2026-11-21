@@ -1,0 +1,9 @@
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "api" || $CI_PIPELINE_SOURCE == "web"'
+
+github_actions_request:
+  stage: test
+  script: ['echo GitHub Actions handles this pipeline request']
+  when: manual
+  allow_failure: true
