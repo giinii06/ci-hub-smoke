@@ -1,6 +1,7 @@
 workflow:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "api" || $CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "pipeline"'
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH != "blond11qq/ci-hub-smoke"'
 
 github_actions_request:
   stage: test
@@ -14,6 +15,7 @@ dispatch_github_actions:
   stage: test
   rules:
     - if: '($CI_PIPELINE_SOURCE == "api" || $CI_PIPELINE_SOURCE == "web") && $CI_PROJECT_PATH != "blond11qq/ci-hub-smoke"'
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PROJECT_PATH != "blond11qq/ci-hub-smoke"'
   trigger:
     project: blond11qq/ci-hub-smoke
     branch: main
